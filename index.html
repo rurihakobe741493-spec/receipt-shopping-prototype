@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>レシートサポート</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- 画面0：オープニング -->
+    <section id="screen-0" class="screen active">
+      <div class="opening">
+        <div class="opening-content">
+          <div class="opening-icon">🛒</div>
+          <h1>レシートを撮るだけ。<br>あとは考えなくていい。</h1>
+          <p class="opening-sub">買い物の段取りやストック管理が苦手な人のための、<br>買い物サポートアプリ</p>
+          <button class="btn-primary btn-opening" onclick="showScreen(1)">使ってみる</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 画面1：ホーム -->
+    <section id="screen-1" class="screen">
+      <div class="screen-header">
+        <span class="header-logo">🛒</span>
+        <h2 class="header-title">買うべきもの</h2>
+      </div>
+      <div id="notification-banner" class="notification-banner hidden"></div>
+      <div id="items-list" class="items-list"></div>
+      <div class="bottom-bar">
+        <button class="btn-primary btn-large" onclick="showScreen(2)">
+          <span class="btn-icon">📷</span> レシートを撮る
+        </button>
+      </div>
+    </section>
+
+    <!-- 画面2：撮影 -->
+    <section id="screen-2" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="showScreen(1)">‹ 戻る</button>
+        <h2 class="header-title">レシートを撮影</h2>
+      </div>
+      <div class="camera-area">
+        <div class="viewfinder">
+          <div class="viewfinder-inner">
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+          </div>
+          <p class="viewfinder-hint">レシートをここに合わせる</p>
+        </div>
+        <button id="shutter-btn" class="btn-shutter" onclick="fakeCapture()">撮影する</button>
+      </div>
+    </section>
+
+    <!-- 画面3：読み取り結果 -->
+    <section id="screen-3" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="showScreen(2)">‹ 戻る</button>
+        <h2 class="header-title">読み取り結果</h2>
+      </div>
+      <div class="scan-result">
+        <div class="receipt-meta">
+          <div class="receipt-meta-row">
+            <span class="meta-label">購入日</span>
+            <span id="scan-date" class="meta-value"></span>
+          </div>
+          <div class="receipt-meta-row">
+            <span class="meta-label">お店</span>
+            <span id="scan-store" class="meta-value"></span>
+          </div>
+        </div>
+        <p class="scan-note">✓ 記録する商品を確認してください</p>
+        <div id="scan-items" class="scan-items"></div>
+        <button class="btn-primary btn-large" onclick="recordItems()">これらを記録する</button>
+      </div>
+    </section>
+
+    <!-- 画面4：サイクル設定 -->
+    <section id="screen-4" class="screen">
+      <div class="screen-header screen-header--col">
+        <button class="btn-back btn-back--inline" onclick="showScreen(1)">‹ スキップしてホームへ</button>
+        <h2 class="header-title">使い切りサイクルを設定</h2>
+        <p class="header-sub">消耗品として管理するものを選んでください</p>
+      </div>
+      <div id="cycle-items" class="cycle-items"></div>
+      <div class="bottom-bar">
+        <button class="btn-primary btn-large" onclick="saveCycles()">設定して完了</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ローディングオーバーレイ（全画面） -->
+  <div id="loading-overlay" class="loading-overlay hidden">
+    <div class="spinner"></div>
+    <p class="loading-text">読み取り中…</p>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,598 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
+    'Noto Sans JP', sans-serif;
+  background: #EDEEF2;
+  display: flex;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== App Container ===== */
+#app {
+  width: 100%;
+  max-width: 430px;
+  background: #F4F5F9;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== Screen ===== */
+.screen {
+  display: none;
+  flex-direction: column;
+  min-height: 100vh;
+  animation: fadeIn 0.2s ease;
+}
+
+.screen.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Screen Header ===== */
+.screen-header {
+  padding: 18px 20px 14px;
+  background: white;
+  border-bottom: 1px solid #EBEBEB;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header-logo {
+  font-size: 22px;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+}
+
+.header-sub {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+}
+
+
+.screen-header--col {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #5B8CFF;
+  padding: 0 4px 0 0;
+  cursor: pointer;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.btn-back--inline {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+  background: #4F80FF;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.1s;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 18px;
+  font-size: 17px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-icon {
+  font-size: 19px;
+}
+
+.btn-opening {
+  padding: 18px 48px;
+  font-size: 17px;
+  border-radius: 30px;
+  background: white;
+  color: #4F80FF;
+}
+
+/* ===== Bottom Bar ===== */
+.bottom-bar {
+  padding: 16px 20px 20px;
+  background: white;
+  border-top: 1px solid #EBEBEB;
+  flex-shrink: 0;
+}
+
+/* ========================
+   画面0：オープニング
+   ======================== */
+.opening {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #4F80FF 0%, #7B4FFF 100%);
+  min-height: 100vh;
+  padding: 40px 28px;
+}
+
+.opening-content {
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.opening-icon {
+  font-size: 60px;
+}
+
+.opening-content h1 {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.opening-sub {
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.85;
+  max-width: 280px;
+}
+
+/* ========================
+   画面1：ホーム
+   ======================== */
+
+/* 通知バナー */
+.notification-banner {
+  margin: 16px 16px 0;
+  padding: 14px 16px;
+  background: #FFF4E5;
+  border: 1.5px solid #FFB347;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #C05800;
+  font-weight: 500;
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.notification-banner.hidden {
+  display: none;
+}
+
+.notif-icon {
+  font-size: 17px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* 商品リスト */
+.items-list {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.items-list-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #AAA;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  margin-left: 4px;
+}
+
+.item-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  gap: 12px;
+}
+
+.item-card--urgent {
+  border-left: 4px solid #FF6B6B;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-store {
+  font-size: 12px;
+  color: #AAA;
+}
+
+.item-days {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.days-num {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: #BBBBBB;
+}
+
+.days-label {
+  display: block;
+  font-size: 11px;
+  color: #BBBBBB;
+  margin-top: 2px;
+  text-align: right;
+}
+
+.item-days--urgent .days-num {
+  color: #FF6B6B;
+}
+
+.item-days--urgent .days-label {
+  color: #FF6B6B;
+}
+
+/* ========================
+   画面2：撮影
+   ======================== */
+.camera-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  gap: 32px;
+  background: #1A1A2E;
+}
+
+.viewfinder {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 0.6;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.viewfinder-inner {
+  position: absolute;
+  inset: 20px;
+}
+
+.corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: white;
+  border-style: solid;
+  opacity: 0.7;
+}
+
+.corner.tl { top: 0; left: 0; border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
+.corner.tr { top: 0; right: 0; border-width: 3px 3px 0 0; border-radius: 0 4px 0 0; }
+.corner.bl { bottom: 0; left: 0; border-width: 0 0 3px 3px; border-radius: 0 0 0 4px; }
+.corner.br { bottom: 0; right: 0; border-width: 0 3px 3px 0; border-radius: 0 0 4px 0; }
+
+.viewfinder-hint {
+  position: absolute;
+  bottom: 16px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.btn-shutter {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: white;
+  border: 5px solid #4F80FF;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4F80FF;
+  cursor: pointer;
+  transition: transform 0.1s;
+  flex-shrink: 0;
+}
+
+.btn-shutter:active {
+  transform: scale(0.93);
+}
+
+.btn-shutter:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ローディング */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.loading-overlay.hidden {
+  display: none;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* ========================
+   画面3：読み取り結果
+   ======================== */
+.scan-result {
+  padding: 20px 16px 28px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.receipt-meta {
+  background: white;
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.receipt-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-label {
+  font-size: 12px;
+  color: #AAA;
+  font-weight: 600;
+}
+
+.meta-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.scan-note {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 10px;
+  margin-left: 4px;
+}
+
+.scan-items {
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.scan-item {
+  border-bottom: 1px solid #F2F2F2;
+}
+
+.scan-item:last-child {
+  border-bottom: none;
+}
+
+.scan-item-label {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.scan-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #4F80FF;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.scan-item-name {
+  flex: 1;
+  font-size: 15px;
+  color: #333;
+}
+
+.scan-item-price {
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* ========================
+   画面4：サイクル設定
+   ======================== */
+.cycle-items {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cycle-item {
+  background: white;
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cycle-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.cycle-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #4F80FF;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.cycle-item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.cycle-options {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #F2F2F2;
+}
+
+.cycle-label {
+  font-size: 12px;
+  color: #AAA;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.cycle-presets {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cycle-preset-btn {
+  padding: 9px 18px;
+  border: 2px solid #E5E5E5;
+  border-radius: 20px;
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  color: #777;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cycle-preset-btn.selected {
+  border-color: #4F80FF;
+  background: #4F80FF;
+  color: white;
+}
+
+/* ===== Utility ===== */
+.hidden {
+  display: none !important;
+}
+
+/* ===== Scrollbar ===== */
+.items-list::-webkit-scrollbar,
+.scan-result::-webkit-scrollbar,
+.cycle-items::-webkit-scrollbar {
+  width: 3px;
+}
+
+.items-list::-webkit-scrollbar-thumb,
+.scan-result::-webkit-scrollbar-thumb,
+.cycle-items::-webkit-scrollbar-thumb {
+  background: #DDD;
+  border-radius: 2px;
+}
