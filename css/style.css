@@ -24,7 +24,7 @@ body {
   max-width: 430px;
   background: #F4F5F9;
   min-height: 100vh;
-  /* min-height: 100dvh; /* スクロール不備修正：ダイナミックビューポートに対応 */
+  min-height: 100dvh; /* スクロール不備修正：ダイナミックビューポートに対応 */
   position: relative;
   overflow: hidden;
 }
