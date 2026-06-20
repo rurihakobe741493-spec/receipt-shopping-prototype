@@ -23,8 +23,8 @@ body {
   width: 100%;
   max-width: 430px;
   background: #F4F5F9;
-  min-height: 100vh;
-  min-height: 100dvh; /* スクロール不備修正：ダイナミックビューポートに対応 */
+  /* min-height: 100vh; スクロール不備修正で削除 */
+  height: 100dvh; /* スクロール不備修正：ダイナミックビューポートに対応 */
   position: relative;
   overflow: hidden;
 }
@@ -33,7 +33,8 @@ body {
 .screen {
   display: none;
   flex-direction: column;
-  min-height: 100%; /* スクロール不備修正：フッターバーを含めて画面全体を覆うために100vhから100%に変更 */
+  /* min-height: 100vh; スクロール不備修正で削除 */
+  height: 100%; /* スクロール不備修正：フッターバーを含めて画面全体を覆うために100vhから100%に変更 */
   animation: fadeIn 0.2s ease;
 }
 
@@ -156,7 +157,7 @@ body {
   align-items: center;
   justify-content: center;
   background: linear-gradient(160deg, #4F80FF 0%, #7B4FFF 100%);
-  min-height: 100vh;
+  /* min-height: 100vh; スクロール不備修正で削除 */
   padding: 40px 28px;
 }
 
