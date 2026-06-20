@@ -314,12 +314,15 @@ body {
   padding: 32px 24px;
   gap: 32px;
   background: #1A1A2E;
+  min-height: 0;        /* ← カメラボタン修正の追加：縮小を許可する */
+  overflow-y: auto;     /* ← カメラボタン修正の追加：それでも溢れたらスクロール（保険） */
 }
 
 .viewfinder {
   width: 100%;
   max-width: 280px;
   aspect-ratio: 0.6;
+  max-height: 55vh;     /* ← カメラボタン修正の追加：画面の高さの55%を上限に */
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
   display: flex;
